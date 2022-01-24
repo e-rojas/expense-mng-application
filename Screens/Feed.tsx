@@ -42,19 +42,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-function firstName(firstName: any, arg1: string, lastName: any, arg3: string, password: any, arg5: string, email: any, arg7: string) {
-  throw new Error("Function not implemented.");
-}
 
-function lastName(firstName: any, arg1: string, lastName: any, arg3: string, password: any, arg5: string, email: any, arg7: string) {
-  throw new Error("Function not implemented.");
-}
-
-function password(firstName: any, arg1: string, lastName: any, arg3: string, password: any, arg5: string, email: any, arg7: string) {
-  throw new Error("Function not implemented.");
-}
-
-function email(firstName: any, arg1: string, lastName: any, arg3: string, password: any, arg5: string, email: any, arg7: string) {
-  throw new Error("Function not implemented.");
-}
 
