@@ -12,7 +12,7 @@ const Login = (props: Props) => {
   }>({ email: "", password: "", firstName: "", lastName: "" });
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title}>Signup</Text>
       <TextInput
         style={styles.textInput}
         placeholder="First Name"
@@ -55,7 +55,7 @@ const Login = (props: Props) => {
         secureTextEntry={true}
       />
       <TouchableOpacity style={styles.button} onPress={()=>{}}>
-        <Text >Login</Text>
+        <Text >Signup</Text>
       </TouchableOpacity>
     </View>
   );
