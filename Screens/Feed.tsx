@@ -11,14 +11,14 @@ type Props = {
 const Feed = ({ navigation }: Props) => {
   const dispatch = useDispatch();
 
-React.useEffect(() => {
-  dispatch(registerUser({
-    firstName:'minh',
-    lastName:'Doe',
-    email:'minh@gmail.com',
-    password:'funny1',
-  }))
-}, [])
+// React.useEffect(() => {
+//   dispatch(registerUser({
+//     firstName:'minh',
+//     lastName:'Doe',
+//     email:'minh@gmail.com',
+//     password:'funny1',
+//   }))
+// }, [])
   return (
     <View style={styles.container}>
       <Text>Feed</Text>
