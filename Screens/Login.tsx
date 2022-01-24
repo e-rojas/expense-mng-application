@@ -1,9 +1,25 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React from "react";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../navigation_tabs/Navigation";
+/* 
+type AboutScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  "Home"
+>;
+*/
+type navigationProp = StackNavigationProp<RootStackParamList, "Login">;
+type Props = {
+  navigation: navigationProp;
+};
 
-type Props = {};
-
-const Login = (props: Props) => {
+const Login = ({ navigation }: Props) => {
   const [loginInfo, setLoginInfo] = React.useState<{
     email: string;
     password: string;
@@ -12,25 +28,7 @@ const Login = (props: Props) => {
   }>({ email: "", password: "", firstName: "", lastName: "" });
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Signup</Text>
-      <TextInput
-        style={styles.textInput}
-        placeholder="First Name"
-        placeholderTextColor="#787A91"
-        value={loginInfo.firstName}
-        onChangeText={(firstName: string) =>
-          setLoginInfo((prevState) => ({ ...prevState, firstName }))
-        }
-      />
-      <TextInput
-        style={styles.textInput}
-        placeholder="Last Name"
-        placeholderTextColor="#787A91"
-        value={loginInfo.lastName}
-        onChangeText={(lastName: string) =>
-          setLoginInfo((prevState) => ({ ...prevState, lastName }))
-        }
-      />
+      <Text style={styles.title}>Login</Text>
       <TextInput
         style={styles.textInput}
         placeholder="Email"
@@ -39,8 +37,8 @@ const Login = (props: Props) => {
         onChangeText={(email: string) =>
           setLoginInfo((prevState) => ({ ...prevState, email }))
         }
-        keyboardType='email-address'
-        autoCapitalize='none'
+        keyboardType="email-address"
+        autoCapitalize="none"
         autoCorrect={false}
       />
       <TextInput
@@ -54,8 +52,16 @@ const Login = (props: Props) => {
         textContentType="password"
         secureTextEntry={true}
       />
-      <TouchableOpacity style={styles.button} onPress={()=>{}}>
-        <Text >Signup</Text>
+      <TouchableOpacity style={styles.button} onPress={() => {}}>
+        <Text>Login</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.signUpBtn}
+        onPress={() => {
+          navigation.navigate("Signup");
+        }}
+      >
+        <Text>Signup</Text>
       </TouchableOpacity>
     </View>
   );
@@ -67,26 +73,36 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
-  title:{
+  title: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 20,
   },
   textInput: {
-    width: '80%',
-    backgroundColor: '#D6E5FA',
+    width: "80%",
+    backgroundColor: "#D6E5FA",
     borderRadius: 5,
     height: 50,
     marginBottom: 10,
     paddingLeft: 10,
-   
   },
   button: {
-    backgroundColor: '#6998AB',
+    backgroundColor: "#6998AB",
     padding: 10,
     borderRadius: 5,
-  }
+  },
+  signUpBtn: {
+    marginTop: 20,
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    paddingRight: 40,
+  },
+  signUpBtnText: {
+    color: "#6998AB",
+  },
 });
