@@ -8,7 +8,8 @@ import {
 import React from "react";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../navigation_tabs/Navigation";
-import isEmail from 'validator/lib/isEmail';
+import isEmail from "validator/lib/isEmail";
+import { resetForm } from "../utilities";
 
 type navigationProp = StackNavigationProp<RootStackParamList, "Login">;
 type Props = {
@@ -19,7 +20,7 @@ type Props = {
 };
 
 const Login = ({ navigation }: Props) => {
-  const [isLoginActive, setIsLoginActive] = React.useState(true);
+  const [isLoginFormActive, setIsLoginFormActive] = React.useState(true);
   const [loginInfo, setLoginInfo] = React.useState<{
     email: string;
     password: string;
@@ -28,11 +29,18 @@ const Login = ({ navigation }: Props) => {
   }>({ email: "", password: "", firstName: "", lastName: "" });
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{isLoginActive ? "Signup" : "Login"} </Text>
-      {isLoginActive && (
+      <Text style={styles.title}>{isLoginFormActive ? "Signup" : "Login"} </Text>
+      {isLoginFormActive && (
         <>
           <TextInput
-            style={[styles.textInput,{borderWidth: loginInfo.firstName.length > 3 ? 0 : 1, borderColor: loginInfo.firstName.length > 3 ? '#000' : '#FC9918'}]}
+            style={[
+              styles.textInput,
+              {
+                borderWidth: loginInfo.firstName.length > 3 ? 0 : 1,
+                borderColor:
+                  loginInfo.firstName.length > 3 ? "#000" : "#FC9918",
+              },
+            ]}
             placeholder="First Name"
             placeholderTextColor="#787A91"
             value={loginInfo.firstName}
@@ -41,7 +49,13 @@ const Login = ({ navigation }: Props) => {
             }
           />
           <TextInput
-            style={[styles.textInput,{borderWidth: loginInfo.lastName.length > 3 ? 0 : 1, borderColor: loginInfo.lastName.length > 3 ? '#000' : '#FC9918'}]}
+            style={[
+              styles.textInput,
+              {
+                borderWidth: loginInfo.lastName.length > 3 ? 0 : 1,
+                borderColor: loginInfo.lastName.length > 3 ? "#000" : "#FC9918",
+              },
+            ]}
             placeholder="Last Name"
             placeholderTextColor="#787A91"
             value={loginInfo.lastName}
@@ -52,7 +66,13 @@ const Login = ({ navigation }: Props) => {
         </>
       )}
       <TextInput
-        style={[styles.textInput,{borderWidth: isEmail(loginInfo.email) ? 0 : 1, borderColor: isEmail(loginInfo.email) ? '#000' : '#FC9918'}]}
+        style={[
+          styles.textInput,
+          {
+            borderWidth: isEmail(loginInfo.email) ? 0 : 1,
+            borderColor: isEmail(loginInfo.email) ? "#000" : "#FC9918",
+          },
+        ]}
         placeholder="Email"
         placeholderTextColor="#787A91"
         value={loginInfo.email}
@@ -64,7 +84,13 @@ const Login = ({ navigation }: Props) => {
         autoCorrect={false}
       />
       <TextInput
-        style={[styles.textInput,{borderWidth: loginInfo.password.length  ? 0 : 1, borderColor: loginInfo.password.length  ? '#000' : '#FC9918'}]}
+        style={[
+          styles.textInput,
+          {
+            borderWidth: loginInfo.password.length ? 0 : 1,
+            borderColor: loginInfo.password.length ? "#000" : "#FC9918",
+          },
+        ]}
         placeholder="Password"
         placeholderTextColor="#787A91"
         value={loginInfo.password}
@@ -74,21 +100,41 @@ const Login = ({ navigation }: Props) => {
         textContentType="password"
         secureTextEntry={true}
       />
-      <TouchableOpacity style={[styles.button,{backgroundColor:isEmail(loginInfo.email) && loginInfo.password.length ? '#6998AB' : '#F7F7F7'}]} onPress={() => {
-       
-      }}
-      disabled={!isEmail(loginInfo.email)}
+      <TouchableOpacity
+        style={[
+          styles.button,
+          {
+            backgroundColor:
+              isEmail(loginInfo.email) && loginInfo.password.length
+                ? "#6998AB"
+                : "#F7F7F7",
+          },
+        ]}
+        onPress={() => {
+          console.log(loginInfo);
+          resetForm({ setLoginInfo });
+        }}
+        disabled={!isEmail(loginInfo.email)}
       >
-        <Text style={{color:isEmail(loginInfo.email) && loginInfo.password.length ? '#fff' : '#b7b7b7'}} >{isLoginActive ? "Signup" : "Login"}</Text>
+        <Text
+          style={{
+            color:
+              isEmail(loginInfo.email) && loginInfo.password.length
+                ? "#fff"
+                : "#b7b7b7",
+          }}
+        >
+          {isLoginFormActive ? "Signup" : "Login"}
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.signUpBtn}
         onPress={() => {
-          setIsLoginActive((prevState) => !prevState);
-          setLoginInfo(prevState => ({ ...prevState, email: "", password: "", firstName: "", lastName: "" }))
+          setIsLoginFormActive((prevState) => !prevState);
+          resetForm({ setLoginInfo });
         }}
       >
-        <Text>{isLoginActive ? "Login" : "Signup"} </Text>
+        <Text>{isLoginFormActive ? "Login" : "Signup"} </Text>
       </TouchableOpacity>
     </View>
   );
@@ -114,7 +160,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     height: 50,
     marginBottom: 10,
-    paddingLeft: 10
+    paddingLeft: 10,
   },
   button: {
     padding: 10,
