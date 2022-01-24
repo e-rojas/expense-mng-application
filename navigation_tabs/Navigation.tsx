@@ -32,7 +32,7 @@ const Navigation = () => {
           </>
         ) : (
           <>
-            <RootStack.Screen name="Login" component={Login}  />
+            <RootStack.Screen name="Login" component={Login} options={{headerShown:false}} />
           </>
         )}
       </RootStack.Navigator>
