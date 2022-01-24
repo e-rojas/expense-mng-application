@@ -8,18 +8,14 @@ import {
 import React from "react";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../navigation_tabs/Navigation";
-/* 
-type AboutScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  "Home"
->;
-*/
+
 type navigationProp = StackNavigationProp<RootStackParamList, "Login">;
 type Props = {
   navigation: navigationProp;
 };
 
 const Login = ({ navigation }: Props) => {
+  const [isLoginActive, setIsLoginActive] = React.useState(true);
   const [loginInfo, setLoginInfo] = React.useState<{
     email: string;
     password: string;
@@ -28,7 +24,29 @@ const Login = ({ navigation }: Props) => {
   }>({ email: "", password: "", firstName: "", lastName: "" });
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title}>{isLoginActive ? "Signup" : "Login"} </Text>
+      {isLoginActive && (
+        <>
+          <TextInput
+            style={styles.textInput}
+            placeholder="First Name"
+            placeholderTextColor="#787A91"
+            value={loginInfo.firstName}
+            onChangeText={(firstName: string) =>
+              setLoginInfo((prevState) => ({ ...prevState, firstName }))
+            }
+          />
+          <TextInput
+            style={styles.textInput}
+            placeholder="Last Name"
+            placeholderTextColor="#787A91"
+            value={loginInfo.lastName}
+            onChangeText={(lastName: string) =>
+              setLoginInfo((prevState) => ({ ...prevState, lastName }))
+            }
+          />
+        </>
+      )}
       <TextInput
         style={styles.textInput}
         placeholder="Email"
@@ -53,15 +71,15 @@ const Login = ({ navigation }: Props) => {
         secureTextEntry={true}
       />
       <TouchableOpacity style={styles.button} onPress={() => {}}>
-        <Text>Login</Text>
+        <Text>{isLoginActive ? "Signup" : "Login"}</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.signUpBtn}
         onPress={() => {
-          navigation.navigate("Signup");
+          setIsLoginActive(!isLoginActive);
         }}
       >
-        <Text>Signup</Text>
+        <Text>{isLoginActive ? "Login" : "Signup"} </Text>
       </TouchableOpacity>
     </View>
   );
