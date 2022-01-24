@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import FeedStack from "./Screens/FeedStack";
-import ProfileStack from "./Screens/ProfileStack";
+import FeedStack from "../Screens/FeedStack";
+import ProfileStack from "../Screens/ProfileStack";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Tab = createBottomTabNavigator();
