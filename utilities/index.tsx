@@ -1,10 +1,12 @@
 interface ResetProps {
-    setLoginInfo: React.Dispatch<React.SetStateAction<{
-        email: string;
-        password: string;
-        firstName: string;
-        lastName: string;
-    }>>
+  setLoginInfo: React.Dispatch<
+    React.SetStateAction<{
+      email: string;
+      password: string;
+      firstName: string;
+      lastName: string;
+    }>
+  >;
 }
 export const resetForm = ({ setLoginInfo }: ResetProps) => {
   setLoginInfo({

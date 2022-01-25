@@ -4,7 +4,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import HomeTabs from "./TabsNavigator";
 import Settings from "../Screens/Settings";
 import Login from "../Screens/Login";
-
+import { RootStore } from "../redux/store/store";
+import { useSelector } from "react-redux";
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
@@ -17,11 +18,12 @@ export type RootStackParamList = {
 };
 
 const Navigation = () => {
-  const [userToken, setUserToken] = React.useState(false);
+  const user = useSelector((state: RootStore) => state.user);
+
   return (
     <NavigationContainer>
       <RootStack.Navigator>
-        {userToken ? (
+        {user.isLoggedIn ? (
           <>
             <RootStack.Screen
               name="Home"
@@ -32,7 +34,11 @@ const Navigation = () => {
           </>
         ) : (
           <>
-            <RootStack.Screen name="Login" component={Login} options={{headerShown:false}} />
+            <RootStack.Screen
+              name="Login"
+              component={Login}
+              options={{ headerShown: false }}
+            />
           </>
         )}
       </RootStack.Navigator>

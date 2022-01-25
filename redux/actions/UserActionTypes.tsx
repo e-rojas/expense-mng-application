@@ -10,6 +10,7 @@ export type User = {
   password?: string;
   avatar?: string;
   token?: string;
+  isLoggedIn?: boolean;
 };
 
 export interface USERLOGIN {
