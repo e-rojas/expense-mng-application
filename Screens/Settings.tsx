@@ -8,9 +8,10 @@ type Props = {};
 
 const Settings = (props: Props) => {
   const dispatch = useDispatch();
+  
   return (
     <View style={styles.container}>
-      <Text>Settings Screen</Text>
+      <Text>Settings </Text>
       <Button title="Logout" onPress={()=> {
        dispatch(logoutUser());
       }} />
