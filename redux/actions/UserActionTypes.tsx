@@ -23,4 +23,8 @@ export interface USERREGISTER {
     payload: User;
 }
 
-export type UserDispatchTypes = USERLOGIN | USERREGISTER;
+export interface USERLOGOUT {
+    type: typeof USER_LOGOUT;
+}
+
+export type UserDispatchTypes = USERLOGIN | USERREGISTER | USERLOGOUT;

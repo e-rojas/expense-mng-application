@@ -1,12 +1,19 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../redux/actions/User";
+
 
 type Props = {};
 
 const Settings = (props: Props) => {
+  const dispatch = useDispatch();
   return (
     <View style={styles.container}>
       <Text>Settings Screen</Text>
+      <Button title="Logout" onPress={()=> {
+       dispatch(logoutUser());
+      }} />
     </View>
   );
 };
