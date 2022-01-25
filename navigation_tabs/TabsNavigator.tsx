@@ -9,7 +9,7 @@ const HomeTabs = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name="Feed stack"
+        name="Expenses"
         component={FeedStack}
         options={{
           tabBarIcon: ({ color, size }) => (
