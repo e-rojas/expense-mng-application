@@ -3,8 +3,6 @@ import { User } from '../redux/actions/UserActionTypes';
 
 
 export const register = ({firstName,lastName, email, password}:User) => {
-  console.log(process.env.API_URL);
-
   return axios.post(`${process.env.API_URL}/users`, {
     firstName,
     lastName,
@@ -12,3 +10,10 @@ export const register = ({firstName,lastName, email, password}:User) => {
     password,
   });
 };
+
+export const login = ({email, password}:User) => {
+  return axios.post(`${process.env.API_URL}/auth/login`, {
+    email,
+    password,
+  });
+}

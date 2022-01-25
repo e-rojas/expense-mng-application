@@ -12,7 +12,7 @@ import isEmail from "validator/lib/isEmail";
 import { resetForm } from "../utilities";
 import { useSelector, useDispatch } from "react-redux";
 import { RootStore } from "../redux/store/store";
-import { registerUser } from "../redux/actions/User";
+import { loginUser, registerUser } from "../redux/actions/User";
 
 type navigationProp = StackNavigationProp<RootStackParamList, "Login">;
 type Props = {
@@ -25,7 +25,7 @@ type Props = {
 const Login = ({ navigation }: Props) => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootStore) => state.user);
-  const [isLoginFormActive, setIsLoginFormActive] = React.useState(true);
+  const [isRegisgerUserActive, setIsRegisterUserActive] = React.useState(true);
   const [loginInfo, setLoginInfo] = React.useState<{
     email: string;
     password: string;
@@ -34,8 +34,10 @@ const Login = ({ navigation }: Props) => {
   }>({ email: "", password: "", firstName: "", lastName: "" });
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{isLoginFormActive ? "Signup" : "Login"}</Text>
-      {isLoginFormActive && (
+      <Text style={styles.title}>
+        {isRegisgerUserActive ? "Signup" : "Login"}
+      </Text>
+      {isRegisgerUserActive && (
         <>
           <TextInput
             style={[
@@ -115,7 +117,11 @@ const Login = ({ navigation }: Props) => {
           },
         ]}
         onPress={() => {
-          dispatch(registerUser(loginInfo));
+          if (isRegisgerUserActive) {
+            dispatch(registerUser(loginInfo));
+          } else {
+            dispatch(loginUser(loginInfo));
+          }
           resetForm({ setLoginInfo });
         }}
         disabled={!isEmail(loginInfo.email)}
@@ -128,17 +134,17 @@ const Login = ({ navigation }: Props) => {
                 : "#b7b7b7",
           }}
         >
-          {isLoginFormActive ? "Signup" : "Login"}
+          {isRegisgerUserActive ? "Signup" : "Login"}
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.signUpBtn}
         onPress={() => {
-          setIsLoginFormActive((prevState) => !prevState);
+          setIsRegisterUserActive((prevState) => !prevState);
           resetForm({ setLoginInfo });
         }}
       >
-        <Text>{isLoginFormActive ? "Login" : "Signup"} </Text>
+        <Text>{isRegisgerUserActive ? "Login" : "Signup"} </Text>
       </TouchableOpacity>
     </View>
   );
