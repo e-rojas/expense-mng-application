@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Feed from "./Feed";
+import Ionicons from "@expo/vector-icons/Ionicons";
 const FEED_STACK = createNativeStackNavigator();
 
 function FeedStack() {
@@ -8,7 +9,7 @@ function FeedStack() {
       <FEED_STACK.Screen
         name="Feed"
         component={Feed}
-        options={{ headerShown: false }}
+        options={{ headerShown: false,    }}
       />
       {/* other screens */}
     </FEED_STACK.Navigator>

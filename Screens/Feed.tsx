@@ -19,7 +19,7 @@ const Feed = ({ navigation }: Props) => {
 
   return (
     <View style={styles.container}>
-      <Text>Expenses</Text>
+      
       <ExpensesList  />
       
     </View>

@@ -1,6 +1,5 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { Expense } from "../redux/actions/ExpensesActionsTypes";
 import { useSelector } from "react-redux";
 import { RootStore } from "../redux/store/store";
 import ListButton from "./ListButton";
@@ -14,7 +13,7 @@ const ExpensesList = (props: Props) => {
      {
          expenses && (
             <FlatList
-            style={{ width: "100%" }}
+            style={{ width: "100%" , marginTop: 20}}
             keyExtractor={({ id }) => id}
             data={expenses}
             renderItem={({ item }) => (<ListButton expense={item} />)}
