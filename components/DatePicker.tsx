@@ -6,14 +6,14 @@ type Props = {
     React.SetStateAction<{
       description: string;
       amount: string;
-      category: string;
+      note: string;
       date: Date;
     }>
   >;
   expenseForm: {
     description: string;
     amount: string;
-    category: string;
+    note: string;
     date: Date;
   };
 };

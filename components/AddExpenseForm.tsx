@@ -8,17 +8,22 @@ import {
 } from "react-native";
 import React from "react";
 import { closeModal } from "../redux/actions/Modal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import DatePicker from "./DatePicker";
+import { postExpense } from "../services";
+import { RootStore } from "../redux/store/store";
+import moment from "moment";
+import { createExpense } from "../redux/actions/Expenses";
 const currentDate = new Date();
 type Props = {};
 
 const AddExpenseForm = (props: Props) => {
   const dispatch = useDispatch();
+  const user = useSelector((state: RootStore) => state.user);
   const [expenseForm, setExpenseForm] = React.useState({
     description: "",
     amount: "",
-    category: "",
+    note: "",
     date: currentDate,
   });
   return (
@@ -52,13 +57,13 @@ const AddExpenseForm = (props: Props) => {
           </View>
         </View>
         <View style={{ width: "50%" }}>
-          <Text style={styles.label}>Category:</Text>
+          <Text style={styles.label}>Note:</Text>
           <View style={styles.input}>
             <TextInput
               onChangeText={(text) =>
-                setExpenseForm({ ...expenseForm, category: text })
+                setExpenseForm({ ...expenseForm, note: text })
               }
-              value={expenseForm.category}
+              value={expenseForm.note}
               placeholder={"Food"}
             />
           </View>
@@ -85,7 +90,20 @@ const AddExpenseForm = (props: Props) => {
         >
           <Text style={styles.textStyle}>Close</Text>
         </TouchableHighlight>
-        <Button title="Submit" onPress={() => {}} disabled={false} />
+        <Button
+          title="Submit"
+          onPress={() => {
+            dispatch(
+              createExpense(user, {
+                description: expenseForm.description,
+                amount: parseFloat(expenseForm.amount) * 100,
+                note: expenseForm.note,
+                createdAt: moment(expenseForm.date).valueOf(),
+              })
+            );
+          }}
+          disabled={false}
+        />
       </View>
     </View>
   );

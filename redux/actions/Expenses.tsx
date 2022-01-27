@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { getExpenses } from "../../services";
+import { getExpenses, postExpense } from "../../services";
 
 import {
   ExpensesDispatchTypes,
@@ -26,3 +26,16 @@ export const getUserExpenses =
         console.log(`error`, error);
       });
   };
+
+  export const  createExpense = (user:User,expense: Expense) => (dispatch: Dispatch<ExpensesDispatchTypes>) => {
+    postExpense(user,expense)
+    .then(({ data }) => {
+      console.log("createExpense");
+      console.log(data);
+      dispatch({
+        type: ADD_EXPENSE,
+        payload: data,
+      });
+    }
+    )
+  }

@@ -8,7 +8,7 @@ export type Expense = {
   note: string;
   amount: number;
   createdAt: number;
-  id: string;
+  id?: string;
 };
 export interface LOADINGEXPENSES {
   type: typeof LOAD_EXPENSES;
