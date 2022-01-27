@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text } from "react-native";
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootStore } from "../redux/store/store";
@@ -12,21 +12,17 @@ const ExpensesList = (props: Props) => {
   const expenses = useSelector((state: RootStore) => state.expenses);
   return (
     <>
-    <Text>
-      Expenses
-    </Text>
-     {
-         expenses && (
-            <FlatList
-            style={{ width: "100%" , marginTop: 20}}
-            keyExtractor={({ id }) => id}
-            data={expenses}
-            renderItem={({ item }) => (<ListButton expense={item} />)}
-          />
-         )
-     }
+      <Text>Expenses</Text>
+      {expenses && (
+        <FlatList
+          style={{ width: "100%", marginTop: 20 }}
+          keyExtractor={({ id }) => id}
+          data={expenses}
+          renderItem={({ item }) => <ListButton expense={item} />}
+        />
+      )}
       <Modal>
-        <Text>Modal</Text>
+        <Text>Create Expense</Text>
         <AddExpenseForm />
       </Modal>
     </>

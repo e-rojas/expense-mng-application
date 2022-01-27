@@ -9,17 +9,17 @@ import {
 import React from "react";
 import { closeModal } from "../redux/actions/Modal";
 import { useDispatch } from "react-redux";
-
-
+import DatePicker from "./DatePicker";
+const currentDate = new Date();
 type Props = {};
 
 const AddExpenseForm = (props: Props) => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [expenseForm, setExpenseForm] = React.useState({
     description: "",
-    amount: 0,
+    amount: "",
     category: "",
-    date: new Date(),
+    date: currentDate,
   });
   return (
     <View style={{ marginTop: 20 }}>
@@ -43,7 +43,7 @@ const AddExpenseForm = (props: Props) => {
               onChangeText={(amt) => {
                 const AMOUNT = amt;
                 if (!AMOUNT || AMOUNT.match(/^\d{1,}(\.\d{0,2})?$/)) {
-                  setExpenseForm({ ...expenseForm, amount: Number(AMOUNT) });
+                  setExpenseForm({ ...expenseForm, amount: AMOUNT });
                 }
               }}
               value={expenseForm.amount.toString()}
@@ -65,17 +65,12 @@ const AddExpenseForm = (props: Props) => {
         </View>
       </View>
       <View style={styles.datePicker}>
-        <Text> Select date...</Text>
-        {/* <DatePicker
-          value={expenseForm.date}
-          width={"80%"}
-          fontSize={19}
-          height={120}
-          onChange={(value: Date) =>
-            setExpenseForm({ ...expenseForm, date: value })
-          }
-          format={"yyyy-mm-dd"}
-        /> */}
+        <View>
+          <DatePicker
+            setExpenseForm={setExpenseForm}
+            expenseForm={expenseForm}
+          />
+        </View>
       </View>
       <View style={styles.fixToText}>
         <TouchableHighlight
@@ -85,7 +80,7 @@ const AddExpenseForm = (props: Props) => {
             width: "25%",
           }}
           onPress={() => {
-            dispatch(closeModal())
+            dispatch(closeModal());
           }}
         >
           <Text style={styles.textStyle}>Close</Text>
