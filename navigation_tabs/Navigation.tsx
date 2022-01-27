@@ -28,7 +28,7 @@ const Navigation = () => {
             <RootStack.Screen
               name="Home"
               component={HomeTabs}
-              options={{ headerShown: false, }}
+              options={{ headerShown: false }}
             />
             <RootStack.Screen name="Settings" component={Settings} />
           </>

@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, Modal, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../navigation_tabs/Navigation";
@@ -12,16 +12,14 @@ type Props = {
 const Feed = ({ navigation }: Props) => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootStore) => state.user);
-  
+
   React.useEffect(() => {
     dispatch(getUserExpenses(user));
   }, []);
 
   return (
     <View style={styles.container}>
-      
-      <ExpensesList  />
-      
+      <ExpensesList />
     </View>
   );
 };
@@ -29,12 +27,11 @@ const Feed = ({ navigation }: Props) => {
 export default Feed;
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: "center",
-      justifyContent: "center",
-      paddingRight: 20,
-      paddingLeft: 20,
-    },
-
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingRight: 20,
+    paddingLeft: 20,
+  },
 });

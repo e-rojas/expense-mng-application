@@ -9,7 +9,7 @@ function FeedStack() {
       <FEED_STACK.Screen
         name="Feed"
         component={Feed}
-        options={{ headerShown: false,    }}
+        options={{ headerShown: false }}
       />
       {/* other screens */}
     </FEED_STACK.Navigator>

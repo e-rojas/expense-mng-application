@@ -3,6 +3,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { RootStore } from "../redux/store/store";
 import ListButton from "./ListButton";
+import Modal from "./Modal";
+import AddExpenseForm from "./AddExpenseForm";
 
 type Props = {};
 
@@ -10,6 +12,9 @@ const ExpensesList = (props: Props) => {
   const expenses = useSelector((state: RootStore) => state.expenses);
   return (
     <>
+    <Text>
+      Expenses
+    </Text>
      {
          expenses && (
             <FlatList
@@ -20,6 +25,10 @@ const ExpensesList = (props: Props) => {
           />
          )
      }
+      <Modal>
+        <Text>Modal</Text>
+        <AddExpenseForm />
+      </Modal>
     </>
   );
 };
