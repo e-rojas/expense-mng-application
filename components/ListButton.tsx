@@ -23,10 +23,12 @@ const ListButton = ({ expense }: Props) => {
             <Text style={styles.descriptionText}>{expense.description} </Text>
             <Text style={styles.smallText}>{expense.note} </Text>
           </View>
-          <Text>{moment(expense.createdAt).format("MM DD, YYYY")}</Text>
+          <View style={styles.info}>
           <Text style={styles.priceText}>{`$${(expense.amount / 100).toFixed(
             2
           )}`}</Text>
+          <Text style={styles.smallText}>{moment(expense.createdAt).format("MM DD, YYYY")}</Text>
+          </View>
         </View>
       </Swipeable>
     </TouchableHighlight>

@@ -12,13 +12,13 @@ const ExpensesList = (props: Props) => {
   const expenses = useSelector((state: RootStore) => state.expenses);
   return (
     <>
-      <Text>Expenses</Text>
+      
       {expenses && (
         <FlatList
           style={{ width: "100%", marginTop: 20 }}
-          keyExtractor={({ id }) => id}
+        
           data={expenses}
-          renderItem={({ item }) => <ListButton expense={item} />}
+          renderItem={({ item }) => <ListButton expense={item} key={item.id} />}
         />
       )}
       <Modal>

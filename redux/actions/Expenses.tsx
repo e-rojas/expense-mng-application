@@ -29,12 +29,10 @@ export const getUserExpenses =
 
   export const  createExpense = (user:User,expense: Expense) => (dispatch: Dispatch<ExpensesDispatchTypes>) => {
     postExpense(user,expense)
-    .then(({ data }) => {
-      console.log("createExpense");
-      console.log(data);
+    .then(({ data: { expense } }) => {
       dispatch({
         type: ADD_EXPENSE,
-        payload: data,
+        payload: expense,
       });
     }
     )

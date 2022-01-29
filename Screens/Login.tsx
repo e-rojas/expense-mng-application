@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   StyleSheet,
   Text,
   TextInput,
@@ -25,6 +26,7 @@ type Props = {
 const Login = ({ navigation }: Props) => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootStore) => state.user);
+  const submit = useSelector((state: RootStore) => state.submit);
   const [isRegisgerUserActive, setIsRegisterUserActive] = React.useState(true);
   const [loginInfo, setLoginInfo] = React.useState<{
     email: string;
@@ -126,17 +128,22 @@ const Login = ({ navigation }: Props) => {
         }}
         disabled={!isEmail(loginInfo.email)}
       >
+        {submit.sending && <ActivityIndicator color="#AA14F0" />}
         <Text
           style={{
             color:
               isEmail(loginInfo.email) && loginInfo.password.length
                 ? "#fff"
                 : "#b7b7b7",
+            marginLeft: 5,
           }}
         >
           {isRegisgerUserActive ? "Signup" : "Login"}
         </Text>
       </TouchableOpacity>
+      {submit.error && (
+        <Text style={styles.errorMessage}>{submit.errorMessage} </Text>
+      )}
       <TouchableOpacity
         style={styles.signUpBtn}
         onPress={() => {
@@ -175,6 +182,8 @@ const styles = StyleSheet.create({
   button: {
     padding: 10,
     borderRadius: 5,
+    display: "flex",
+    flexDirection: "row",
   },
   signUpBtn: {
     marginTop: 20,
@@ -186,5 +195,9 @@ const styles = StyleSheet.create({
   },
   signUpBtnText: {
     color: "#6998AB",
+  },
+  errorMessage: {
+    color: "red",
+    marginTop: 10,
   },
 });

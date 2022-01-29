@@ -101,7 +101,10 @@ const AddExpenseForm = (props: Props) => {
                 createdAt: moment(expenseForm.date).valueOf(),
               })
             );
-          }}
+            dispatch(closeModal());
+          }
+          
+        }
           disabled={false}
         />
       </View>
