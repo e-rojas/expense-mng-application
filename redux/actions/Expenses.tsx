@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { getExpenses, postExpense } from "../../services";
+import { getExpenses, postExpense, removeExpense } from "../../services";
 
 import {
   ExpensesDispatchTypes,
@@ -37,3 +37,24 @@ export const getUserExpenses =
     }
     )
   }
+
+  export const deleteExpense =
+  (user:User,expense: Expense) => async (dispatch: Dispatch<ExpensesDispatchTypes>) => {
+    removeExpense(user,expense)
+      .then(
+        ({
+          data: {
+            success,
+            doc: { id },
+          },
+        }) => {
+          if (success) {
+            dispatch({
+              type: REMOVE_EXPENSE,
+              id,
+            });
+          }
+        }
+      )
+      .catch((e) => console.log(e));
+  };

@@ -1,20 +1,24 @@
+import { StyleSheet, TouchableHighlight } from "react-native";
 import React from "react";
-import {
-  StyleSheet,
-  TouchableHighlight,
-} from "react-native";
+import { Expense } from "../redux/actions/ExpensesActionsTypes";
+import { deleteExpense } from "../redux/actions/Expenses";
 import TabIcon from "./TabIcon";
+import { User } from "../redux/actions/UserActionTypes";
+import { useDispatch } from "react-redux";
 
-const RgtActions = (
-  deleteColor: { (id: number): void; (arg0: any): void },
-  item: { id: number; color?: string }
-) => {
+type Props = {
+  expense: Expense;
+  user: User;
+};
+
+const RgtActions = ({ expense, user }: Props) => {
+  const dispatch = useDispatch();
   return (
     <TouchableHighlight
       activeOpacity={0.6}
       underlayColor="#6D8299"
       onPress={() => {
-        deleteColor(item.id);
+        dispatch(deleteExpense(user, expense));
       }}
       style={styles.rightAction}
     >
@@ -38,8 +42,9 @@ const styles = StyleSheet.create({
   rightAction: {
     alignItems: "center",
     justifyContent: "center",
-    width: 80,
+    width: 40,
     backgroundColor: "orange",
     borderRadius: 5,
+    marginLeft: 10,
   },
 });

@@ -28,7 +28,7 @@ export const getExpenses = ({ token }: User) => {
     },
   });
 };
-export const postExpense = ({token}: User, expense :Expense) => {
+export const postExpense = ({ token }: User, expense: Expense) => {
   return axios.post(`${process.env.API_URL}/expenses`, expense, {
     method: "POST",
     headers: {
@@ -36,4 +36,15 @@ export const postExpense = ({token}: User, expense :Expense) => {
       "x-auth-token": `${token}`,
     },
   });
-}
+};
+
+export const removeExpense = ({ token }: User, { id }: Expense) => {
+  return axios.delete(`${process.env.API_URL}/expenses/delete`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "x-auth-token": `${token}`,
+      params: `${id}`,
+    },
+  });
+};
