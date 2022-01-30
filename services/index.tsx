@@ -48,3 +48,16 @@ export const removeExpense = ({ token }: User, { id }: Expense) => {
     },
   });
 };
+
+export const updateExpense = ({token}: User, expense: Expense) => {
+  console.log({token, expenseID: expense.id, expense});
+  return axios.patch(`${process.env.API_URL}/expenses`, expense, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "x-auth-token": `${token}`,
+      'params': `${expense.id}`,
+    },
+    data: expense,
+  });
+}

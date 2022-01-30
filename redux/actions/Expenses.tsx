@@ -1,5 +1,10 @@
 import { Dispatch } from "redux";
-import { getExpenses, postExpense, removeExpense } from "../../services";
+import {
+  getExpenses,
+  postExpense,
+  removeExpense,
+  updateExpense,
+} from "../../services";
 
 import {
   ExpensesDispatchTypes,
@@ -27,20 +32,21 @@ export const getUserExpenses =
       });
   };
 
-  export const  createExpense = (user:User,expense: Expense) => (dispatch: Dispatch<ExpensesDispatchTypes>) => {
-    postExpense(user,expense)
-    .then(({ data: { expense } }) => {
+export const createExpense =
+  (user: User, expense: Expense) =>
+  (dispatch: Dispatch<ExpensesDispatchTypes>) => {
+    postExpense(user, expense).then(({ data: { expense } }) => {
       dispatch({
         type: ADD_EXPENSE,
         payload: expense,
       });
-    }
-    )
-  }
+    });
+  };
 
-  export const deleteExpense =
-  (user:User,expense: Expense) => async (dispatch: Dispatch<ExpensesDispatchTypes>) => {
-    removeExpense(user,expense)
+export const deleteExpense =
+  (user: User, expense: Expense) =>
+  async (dispatch: Dispatch<ExpensesDispatchTypes>) => {
+    removeExpense(user, expense)
       .then(
         ({
           data: {
@@ -57,4 +63,28 @@ export const getUserExpenses =
         }
       )
       .catch((e) => console.log(e));
+  };
+
+export const editExpense =
+  (user: User, expense: Expense) =>
+  (dispatch: Dispatch<ExpensesDispatchTypes>) => {
+    updateExpense(user, expense)
+      .then(({ data: { success, expense } }) => {
+        if (success) {
+          console.log('data',expense)
+          dispatch({
+            type: EDIT_EXPENSE,
+            id: expense.id,
+            updates: expense,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // dispatch({
+    //   type: EDIT_EXPENSE,
+    //   id: expense.id,
+    //   updates: expense,
+    // });
   };

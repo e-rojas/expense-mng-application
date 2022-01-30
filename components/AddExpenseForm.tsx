@@ -10,7 +10,6 @@ import React from "react";
 import { closeModal } from "../redux/actions/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import DatePicker from "./DatePicker";
-import { postExpense } from "../services";
 import { RootStore } from "../redux/store/store";
 import moment from "moment";
 import { createExpense } from "../redux/actions/Expenses";
@@ -74,6 +73,7 @@ const AddExpenseForm = (props: Props) => {
           <DatePicker
             setExpenseForm={setExpenseForm}
             expenseForm={expenseForm}
+            title="Create Expense"
           />
         </View>
       </View>
