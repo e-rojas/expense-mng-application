@@ -10,14 +10,18 @@ type Props = {
   expense: Expense;
   user: User;
   navigation: StackNavigationProp<RootStackParamList, "Feed">
+  swipeableRef: any;
 };
 
-const LftButtonListActions = ({ expense, user, navigation}: Props) => {
+const LftButtonListActions = ({ expense, user, navigation,swipeableRef}: Props) => {
   return (
     <TouchableHighlight
       activeOpacity={0.6}
       underlayColor="#6D8299"
       onPress={() => {
+        setTimeout(() => {
+          swipeableRef.current.close();
+        }, 500);
         navigation.navigate("Settings", { msg: "From Feed Screen", expense });
       }}
       style={styles.leftAction}

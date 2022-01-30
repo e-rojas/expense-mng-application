@@ -20,8 +20,9 @@ const ListButton = ({ expense,navigation }: Props) => {
   return (
     <View style={[styles.button]}>
       <Swipeable 
+        ref={swipeableRef}
         renderRightActions={ () => <RgtButtonListActions expense={expense} user={user} /> }
-        renderLeftActions={ () => <LftButtonListActions expense={expense} user={user} navigation={navigation} /> }
+        renderLeftActions={ () => <LftButtonListActions expense={expense} user={user} navigation={navigation} swipeableRef={swipeableRef} /> }
       >
         <View style={styles.row}>
           <View style={styles.info}>

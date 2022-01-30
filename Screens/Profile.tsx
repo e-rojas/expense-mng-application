@@ -10,16 +10,8 @@ const Profile = ({}: Props) => {
   const dispatch = useDispatch();
   return (
     <View style={styles.container}>
-      <Text>Profile</Text>
-      <Modal >
-      <Text style={styles.modalText}>Hello World!</Text>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => dispatch(closeModal())}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
-         </Modal>
+      <Text>Edit Profile</Text>
+      
     </View>
   );
 };

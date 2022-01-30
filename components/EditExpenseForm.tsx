@@ -13,7 +13,6 @@ import { RootStackParamList } from "../navigation_tabs/Navigation";
 
 type Props = {
   expense: Expense;
-
   navigation: StackNavigationProp<RootStackParamList, "Settings">;
 };
 const currentDate = new Date();

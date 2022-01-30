@@ -22,12 +22,6 @@ const Settings = ({navigation,route}:Props) => {
   return (
     <View style={styles.container}>
       <EditExpenseForm expense={expense} navigation={navigation}  />
-      {/* <Text>Settings </Text>
-      <Text>{route.params.msg} </Text>
-     
-      <Button title="Logout" onPress={()=> {
-       dispatch(logoutUser());
-      }} /> */}
     </View>
   );
 };
