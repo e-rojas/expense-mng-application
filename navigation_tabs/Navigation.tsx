@@ -6,12 +6,13 @@ import Settings from "../Screens/Settings";
 import Login from "../Screens/Login";
 import { RootStore } from "../redux/store/store";
 import { useSelector } from "react-redux";
+import { Expense } from "../redux/actions/ExpensesActionsTypes";
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 export type RootStackParamList = {
   Home: undefined;
-  Settings: { msg: string };
+  Settings: { msg: string, expense:Expense };
   Feed: undefined;
   Login: undefined;
   Signup: undefined;
@@ -30,7 +31,7 @@ const Navigation = () => {
               component={HomeTabs}
               options={{ headerShown: false }}
             />
-            <RootStack.Screen name="Settings" component={Settings} />
+            <RootStack.Screen name="Settings"  component={Settings} options={{ title:'Edit Expense' }} />
           </>
         ) : (
           <>

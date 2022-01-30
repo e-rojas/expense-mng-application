@@ -19,7 +19,7 @@ const Feed = ({ navigation }: Props) => {
 
   return (
     <View style={styles.container}>
-      <ExpensesList />
+      <ExpensesList navigation={navigation} />
     </View>
   );
 };

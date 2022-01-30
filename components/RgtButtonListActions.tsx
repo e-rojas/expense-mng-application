@@ -11,7 +11,7 @@ type Props = {
   user: User;
 };
 
-const RgtActions = ({ expense, user }: Props) => {
+const RgtButtonListActions = ({ expense, user }: Props) => {
   const dispatch = useDispatch();
   return (
     <TouchableHighlight
@@ -22,12 +22,12 @@ const RgtActions = ({ expense, user }: Props) => {
       }}
       style={styles.rightAction}
     >
-      <TabIcon name="trash" color="#fff" />
+      <TabIcon name="trash" color="#ff0000" />
     </TouchableHighlight>
   );
 };
 
-export default RgtActions;
+export default RgtButtonListActions;
 
 const styles = StyleSheet.create({
   actionText: {
@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: 40,
-    backgroundColor: "orange",
     borderRadius: 5,
     marginLeft: 10,
   },

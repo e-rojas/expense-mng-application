@@ -41,6 +41,7 @@ const HomeTabs = () => {
               <Ionicons name="add-circle" size={30} color="#6b6b6b" />
             </Pressable>
           ),
+          tabBarLabel: () => null,
         }}
       />
       <Tab.Screen
