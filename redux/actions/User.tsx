@@ -15,7 +15,6 @@ export const registerUser =
   (user: User) => async (dispatch: Dispatch<UserDispatchTypes>) => {
     register(user)
       .then((response) => {
-        console.log("response", response.data);
         dispatch({
           type: USER_REGISTER,
           payload: {
@@ -47,7 +46,6 @@ export const loginUser =
     });
     login(user)
       .then((response) => {
-        console.log("response", response.data);
         setTimeout(() => {
           dispatch({
             type: SUBMIT,

@@ -15,8 +15,7 @@ type Props = {
 const Settings = ({navigation,route}:Props) => {
   const {expense} = route.params;
   const dispatch = useDispatch();
-  console.log('xxxxx')
-  console.log(expense);
+
   
   
   return (

@@ -19,7 +19,6 @@ export const login = ({ email, password }: User) => {
 };
 
 export const getExpenses = ({ token }: User) => {
-  console.log(`${token}`);
   return axios.get(`${process.env.API_URL}/expenses`, {
     method: "GET",
     headers: {
@@ -50,7 +49,6 @@ export const removeExpense = ({ token }: User, { id }: Expense) => {
 };
 
 export const updateExpense = ({token}: User, expense: Expense) => {
-  console.log({token, expenseID: expense.id, expense});
   return axios.patch(`${process.env.API_URL}/expenses`, expense, {
     method: "PATCH",
     headers: {
