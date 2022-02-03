@@ -1,4 +1,4 @@
-import { ALERT, User, UserDispatchTypes, USER_LOGIN, USER_LOGOUT, USER_REGISTER } from "../actions/UserActionTypes";
+import { ALERT, User, UserDispatchTypes, USER_LOGIN, USER_LOGOUT, USER_REGISTER, USER_UPDATE } from "../actions/UserActionTypes";
 
 
 const userReducerDefaultState:User = {
@@ -25,6 +25,11 @@ const userReducer = (
       };
       case USER_LOGOUT:
         return userReducerDefaultState
+      case USER_UPDATE:
+        return {
+          ...state,
+          ...action.payload,
+        };
 
     default:
       return state;

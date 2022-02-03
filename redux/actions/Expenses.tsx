@@ -20,8 +20,6 @@ export const getUserExpenses =
   (token: User) => async (dispatch: Dispatch<ExpensesDispatchTypes>) => {
     getExpenses(token)
       .then(({ data }) => {
-        console.log("expenses");
-        console.log(data);
         dispatch({
           type: LOAD_EXPENSES,
           payload: data,
@@ -71,7 +69,6 @@ export const editExpense =
     updateExpense(user, expense)
       .then(({ data: { success, expense } }) => {
         if (success) {
-          console.log('data',expense)
           dispatch({
             type: EDIT_EXPENSE,
             id: expense.id,

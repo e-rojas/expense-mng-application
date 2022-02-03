@@ -61,3 +61,14 @@ export const updateExpense = ({token}: User, expense: Expense) => {
     data: expense,
   });
 }
+
+export const updateSelectedUser = ({token}: User,data: {firstName:string,avatar:string | null, base64:boolean}) => {
+  return axios.patch(`${process.env.API_URL}/users`,data, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "x-auth-token": `${token}`,
+    },
+    data: data,
+  });
+}

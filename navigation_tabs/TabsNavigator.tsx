@@ -45,7 +45,7 @@ const HomeTabs = () => {
         }}
       />
       <Tab.Screen
-        name="Profile stack"
+        name="Edit Profile"
         component={ProfileStack}
         options={{
           tabBarIcon: ({ color, size }) => (

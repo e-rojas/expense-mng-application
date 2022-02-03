@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { login, register } from "../../services";
+import { login, register, updateSelectedUser } from "../../services";
 import { SUBMIT, SubmitDispatchTypes } from "./SubmissionActionsTypes";
 import {
   User,
@@ -8,6 +8,7 @@ import {
   USER_LOGOUT,
   USER_REGISTER,
   ALERT,
+  USER_UPDATE,
 } from "./UserActionTypes";
 
 export const registerUser =
@@ -82,5 +83,43 @@ export const loginUser =
             },
           });
         }, 1000);
+      });
+  };
+export const updateUser =
+  (
+    user: User,
+    data: { firstName: string; avatar: string | null; base64: boolean }
+  ) =>
+  async (dispatch: Dispatch<UserDispatchTypes | SubmitDispatchTypes>) => {
+    dispatch({
+      type: SUBMIT,
+      payload: {
+        sending: true,
+      },
+    });
+    updateSelectedUser(user, data)
+      .then((response) => {
+        const { avatar, firstName } = response.data;
+        dispatch({
+          type: USER_UPDATE,
+          payload: {
+            ...user,
+            avatar,
+            firstName,
+          },
+        });
+        setTimeout(() => {
+          dispatch({
+            type: SUBMIT,
+            payload: {
+              error: false,
+              errorMessage: "",
+              sending: false,
+            },
+          });
+        }, 1000);
+      })
+      .catch((err) => {
+        console.log("err", err);
       });
   };

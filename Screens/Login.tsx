@@ -122,6 +122,7 @@ const Login = ({ navigation }: Props) => {
           if (isRegisgerUserActive) {
             dispatch(registerUser(loginInfo));
           } else {
+            console.log(process.env.API_URL);
             dispatch(loginUser(loginInfo));
           }
           resetForm({ setLoginInfo });

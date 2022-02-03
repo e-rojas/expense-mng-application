@@ -33,10 +33,13 @@ export interface USERREGISTER {
 export interface USERLOGOUT {
     type: typeof USER_LOGOUT;
 }
-
+export interface USERUPDATE {
+    type: typeof USER_UPDATE;
+    payload: User;
+}
 export interface USERALERT {
     type: typeof ALERT;
     payload: User;
 }
 
-export type UserDispatchTypes = USERLOGIN | USERREGISTER | USERLOGOUT | USERALERT;
+export type UserDispatchTypes = USERLOGIN | USERREGISTER | USERLOGOUT | USERALERT | USERUPDATE;
