@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootStore } from "../redux/store/store";
 import { getUserExpenses } from "../redux/actions/Expenses";
 import ExpensesList from "../components/ExpensesList";
+import FabGroup from "../components/FabGroup";
 type Props = {
   navigation: StackNavigationProp<RootStackParamList, "Feed">;
 };
@@ -20,6 +21,7 @@ const Feed = ({ navigation }: Props) => {
   return (
     <View style={styles.container}>
       <ExpensesList navigation={navigation} />
+      <FabGroup />
     </View>
   );
 };
