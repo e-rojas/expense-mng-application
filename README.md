@@ -16,9 +16,12 @@ Expense management application written with TypeScript, React-Native and Redux.
 npm install
 
 ## Aplication display
-![](./login.gif)
-![](./gifs/editexpense.gif)
-![](./gifs/addexpense.gif)
-![](./gifs/updateinfo.gif)
+![Login User](./gifs/login.gif)
+
+![Edit Expense](./gifs/editexpense.gif)
+
+![Add Expense](./gifs/addexpense.gif)
+
+![Update User Info](./gifs/updateinfo.gif)
 
 
